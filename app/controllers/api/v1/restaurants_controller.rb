@@ -7,33 +7,20 @@ class Api::V1::RestaurantsController < ApplicationController
   DEFAULT_LOCATION = "San Francisco, CA"
   SEARCH_LIMIT = 5
 
-  # def search(term, location)
-  #   url = "#{API_HOST}#{SEARCH_PATH}"
-  #   params = {
-  #     term: term,
-  #     location: location,
-  #     limit: SEARCH_LIMIT
-  #   }
-  #
-  #   response = HTTP.auth("Bearer #{API_KEY}").get(url, params: params)
-  #   response.parse
-  # end
-
     def index
+      # byebug
       response = RestClient::Request.execute(
         method: :get,
-        url: 'https://api.yelp.com/v3/businesses/search?term=delis&latitude=37.786882&longitude=-122.399972',
+        url: "https://api.yelp.com/v3/businesses/search?term=delis&location=#{params[:location]}",
         headers: { Authorization: "Bearer #{API_KEY}" }
       )
-
       data = JSON.parse(response)
       render json: data
     end
 
-    def show
-      restaurant = Restaurant.find(params[:id])
-      render json: restaurant
-    end
-
+    # def show
+    #   restaurant = Restaurant.find(params[:id])
+    #   render json: restaurant
+    # end
 
 end

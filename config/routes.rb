@@ -5,9 +5,9 @@ Rails.application.routes.draw do
       get '/users', to: 'users#index'
       get '/users/:id', to: 'users#show'
       get '/events', to: 'events#index'
-      get '/events/:id', to: 'events#show'
+      # get '/events/:id', to: 'events#show'
       get '/restaurants', to: 'restaurants#index'
-      get '/restaurants/:id', to: 'restaurants#show'
+      # get '/restaurants/:id', to: 'restaurants#show'
       get '/programs', to: 'programs#index'
       get '/programs/:id', to: 'programs#show'
     end
