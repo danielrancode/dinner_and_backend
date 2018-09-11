@@ -11,7 +11,7 @@ class Api::V1::RestaurantsController < ApplicationController
       # byebug
       response = RestClient::Request.execute(
         method: :get,
-        url: "https://api.yelp.com/v3/businesses/search?term=delis&location=#{params[:location]}",
+        url: "https://api.yelp.com/v3/businesses/search?term=restaurants&location=#{params[:location]}",
         headers: { Authorization: "Bearer #{API_KEY}" }
       )
       data = JSON.parse(response)
