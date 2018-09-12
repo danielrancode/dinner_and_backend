@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get '/restaurants', to: 'restaurants#index'
       get '/restaurants/:id', to: 'restaurants#show'
       get '/programs', to: 'programs#index'
+      post '/programs', to: 'programs#create'
       get '/programs/:id', to: 'programs#show'
     end
   end

@@ -7,8 +7,6 @@ class Api::V1::EventsController < ApplicationController
       headers: {}
     )
     data = JSON.parse(response)
-    # @events = Event.all
-    # render json: @events
     render json: data
   end
 

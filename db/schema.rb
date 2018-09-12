@@ -16,15 +16,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_033401) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "url"
-    t.string "venue__url"
-    t.string "venue__address"
-    t.string "venue__name"
-    t.string "venue__display_location"
-    t.string "venue__postal_code"
-    t.string "title"
-    t.string "datetime_utc"
-    t.string "performers__image"
+    t.string "seatgeek_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -38,16 +30,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_033401) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "name"
-    t.string "url"
-    t.integer "rating"
-    t.string "categories__title"
-    t.string "image_url"
-    t.string "address1"
-    t.string "address2"
-    t.string "address3"
-    t.string "state"
-    t.string "zip_code"
+    t.string "yelp_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
