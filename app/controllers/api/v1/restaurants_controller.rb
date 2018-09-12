@@ -7,7 +7,7 @@ class Api::V1::RestaurantsController < ApplicationController
   DEFAULT_LOCATION = "San Francisco, CA"
   SEARCH_LIMIT = 5
 
-    def index
+    def search
       # byebug
       response = RestClient::Request.execute(
         method: :get,
@@ -18,9 +18,14 @@ class Api::V1::RestaurantsController < ApplicationController
       render json: data
     end
 
-    # def show
-    #   restaurant = Restaurant.find(params[:id])
-    #   render json: restaurant
-    # end
+    def index
+      @restaurants = Restaurant.all
+      render json: @restaurants
+    end
+
+    def show
+      restaurant = Restaurant.find(params[:id])
+      render json: restaurant
+    end
 
 end
