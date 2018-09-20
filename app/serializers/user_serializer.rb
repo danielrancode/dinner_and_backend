@@ -1,3 +1,3 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :name, :restaurants
+  attributes :id, :name, :password, :programs
 end
