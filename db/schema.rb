@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_033401) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "seatgeek_id"
+    t.string "json_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_033401) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "yelp_id"
+    t.string "json_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

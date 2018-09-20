@@ -11,15 +11,14 @@ class Api::V1::ProgramsController < ApplicationController
   end
 
   def create
-    @restaurant = Restaurant.create(yelp_id: params[:restaurant][:id])
-    @event = Event.create(seatgeek_id: params[:event][:id])
-    @program = Program.create(user_id: 1, restaurant: Restaurant.last, event: Event.last)
+    @restaurant = Restaurant.create(json_data: params[:data][:restaurant_data])
+    @event = Event.create(json_data: params[:data][:event_data])
+    @program = Program.create(user_id: User.last, restaurant: Restaurant.last, event: Event.last)
   end
 
   private
    def program_params
-     params.require(:restaurant).permit(:id)
-     params.require(:event).permit(:id)
+     params.require(:data).permit(:restaurant_data, :event_data)
    end
 
 end
