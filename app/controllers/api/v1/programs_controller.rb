@@ -13,7 +13,7 @@ class Api::V1::ProgramsController < ApplicationController
   def create
     @restaurant = Restaurant.create(json_data: params[:data][:restaurant_data])
     @event = Event.create(json_data: params[:data][:event_data])
-    @program = Program.create(user_id: User.last, restaurant: Restaurant.last, event: Event.last)
+    @program = Program.create(user: User.last, restaurant: Restaurant.last, event: Event.last)
   end
 
   private
