@@ -1,7 +1,8 @@
 class Api::V1::ProgramsController < ApplicationController
 
   def index
-    programs = Program.all
+    @user = User.find(params[:user_id])
+    programs = @user.programs
     render json: programs
   end
 
@@ -11,14 +12,19 @@ class Api::V1::ProgramsController < ApplicationController
   end
 
   def create
+    @user = User.find(params[:user_id])
     @restaurant = Restaurant.create(json_data: params[:data][:restaurant_data])
     @event = Event.create(json_data: params[:data][:event_data])
-    @program = Program.create(user: User.last, restaurant: Restaurant.last, event: Event.last)
+    @program = Program.create(user: @user, restaurant: @restaurant, event: @event)
   end
 
-  private
-   def program_params
-     params.require(:data).permit(:restaurant_data, :event_data)
-   end
+  # private
+  #  def program_params
+  #    params.require(:data).permit(:restaurant_data, :event_data)
+  #  end
+
+   # def user_params
+   #   params.require(:)
+   # end
 
 end

@@ -1,3 +1,3 @@
 class ProgramSerializer < ActiveModel::Serializer
-  attributes :id, :user, :restaurant, :event
+  attributes :id, :user_id, :restaurant_id, :event_id
 end

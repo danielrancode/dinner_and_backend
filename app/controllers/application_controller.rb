@@ -1,15 +1,15 @@
 class ApplicationController < ActionController::API
-  before_action :authorized
+  # before_action :authorized
 
   def encode_token(payload)
     JWT.encode(payload, 'banana')
   end
 
   def auth_header
-    request.header['Authorization']
+    request.headers['Authorization']
   end
 
-  def decoded_token(token)
+  def decoded_token
     if auth_header
       token = auth_header.split(' ')[1]
       begin
