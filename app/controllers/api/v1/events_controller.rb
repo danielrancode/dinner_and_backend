@@ -1,4 +1,5 @@
 class Api::V1::EventsController < ApplicationController
+  skip_before_action :authorized, only: [:search]
 
   def search
     response = RestClient::Request.execute(
@@ -10,14 +11,14 @@ class Api::V1::EventsController < ApplicationController
     render json: data
   end
 
-  def index
-    events = Event.all
-    render json: events
-  end
-
-  def show
-    event = Event.find(params[:id])
-    render json: event
-  end
+  # def index
+  #   events = Event.all
+  #   render json: events
+  # end
+  #
+  # def show
+  #   event = Event.find(params[:id])
+  #   render json: event
+  # end
 
 end

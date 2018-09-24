@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  # skip_before_action :authorized, only: [:create, :index]
+  skip_before_action :authorized, only: [:create, :index, :show] # TODO: remove :index and :show after auth setup complete
 
   def index
     users = User.all
@@ -7,8 +7,9 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-    user = User.find(params[:id])
-    render json: user
+    current_user = User.find(params[:id]) # this line does not appear in Andrew's!!
+    render json: { user: UserSerializer.new(current_user) }, status: :accepted
+    # render json: user
   end
 
   def create

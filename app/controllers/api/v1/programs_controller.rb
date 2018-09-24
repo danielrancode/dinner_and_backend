@@ -1,4 +1,5 @@
 class Api::V1::ProgramsController < ApplicationController
+  # skip_before_action :authorized, only: [:index, :show, :create]
 
   def index
     @user = User.find(params[:user_id])
