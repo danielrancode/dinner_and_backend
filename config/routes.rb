@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/restaurants/search', to: 'restaurants#search'
       get '/events/search', to: 'events#search'
-      post 'login', to: 'auth#create'
+      post '/login', to: 'auth#create'
       resources :users do
         resources :programs
       end
