@@ -7,10 +7,9 @@ class Api::V1::RestaurantsController < ApplicationController
   SEARCH_LIMIT = 5
 
     def search
-      # byebug
       response = RestClient::Request.execute(
         method: :get,
-        url: "https://api.yelp.com/v3/businesses/search?term=restaurants&location=#{params[:location]}",
+        url: "https://api.yelp.com/v3/businesses/search?term=#{params[:term]}&location=#{params[:location]}",
         headers: { Authorization: "Bearer #{ENV["yelp_api_key"]}" }
       )
       data = JSON.parse(response)
