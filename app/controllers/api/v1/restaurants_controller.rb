@@ -1,8 +1,6 @@
 class Api::V1::RestaurantsController < ApplicationController
   skip_before_action :authorized, only: [:search]
 
-  API_KEY = 'dSpOzosE_0tn0aKFycd0FLI230-Xve3W-jZxcpmfCnG7mPxC_-pPUWxj6V0PTHSar0ihkK3UFIdNyew3u_bUPr62UWPWuFpxl7jB2QmtX_V_6SriBkcJTBuFPcpGW3Yx'
-
   DEFAULT_BUSINESS_ID = "yelp-san-francisco"
   DEFAULT_TERM = "dinner"
   DEFAULT_LOCATION = "San Francisco, CA"
@@ -13,7 +11,7 @@ class Api::V1::RestaurantsController < ApplicationController
       response = RestClient::Request.execute(
         method: :get,
         url: "https://api.yelp.com/v3/businesses/search?term=restaurants&location=#{params[:location]}",
-        headers: { Authorization: "Bearer #{API_KEY}" }
+        headers: { Authorization: "Bearer #{ENV["yelp_api_key"]}" }
       )
       data = JSON.parse(response)
       render json: data
