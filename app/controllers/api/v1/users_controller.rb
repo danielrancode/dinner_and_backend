@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  skip_before_action :authorized, only: [:create, :index, :show] # TODO: remove :index and :show after auth setup complete
+  skip_before_action :authorized, only: [:create] # TODO: remove :index and :show after auth setup complete
 
   def index
     users = User.all
