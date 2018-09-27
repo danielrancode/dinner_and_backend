@@ -1,5 +1,5 @@
 class Api::V1::ProgramsController < ApplicationController
-  # skip_before_action :authorized, only: [:index, :show, :create]
+  # skip_before_action :authorized, only: [:index, :show, :create, :delete]
 
   def index
     @user = User.find(params[:user_id])
@@ -17,6 +17,10 @@ class Api::V1::ProgramsController < ApplicationController
     @restaurant = Restaurant.create(json_data: params[:data][:restaurant_data])
     @event = Event.create(json_data: params[:data][:event_data])
     @program = Program.create(user: @user, restaurant: @restaurant, event: @event)
+  end
+
+  def destroy
+    Program.find(params[:id]).destroy
   end
 
   # private
