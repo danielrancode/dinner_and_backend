@@ -6,10 +6,14 @@ class Api::V1::UsersController < ApplicationController
     render json: users
   end
 
-  def show
-    current_user = User.find(params[:id]) # this line does not appear in Andrew's!!
+  # def show
+  #   # current_user = User.find(params[:id]) # this line does not appear in Andrew's!!
+  #   render json: { user: UserSerializer.new(current_user) }, status: :accepted
+  #   # render json: user
+  # end
+
+  def find
     render json: { user: UserSerializer.new(current_user) }, status: :accepted
-    # render json: user
   end
 
   def create

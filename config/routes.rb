@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       get '/restaurants/search', to: 'restaurants#search'
       get '/events/search', to: 'events#search'
       post '/login', to: 'auth#create'
+      get '/user', to: 'users#find'
       resources :users do
         resources :programs
       end
