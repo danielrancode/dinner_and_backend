@@ -4,7 +4,7 @@ class Api::V1::EventsController < ApplicationController
   def search
     response = RestClient::Request.execute(
       method: :get,
-      url: "https://api.seatgeek.com/2/events?lat=#{params[:lat]}&lon=#{params[:lon]}&q=#{params[:q]}&client_id=#{ENV["seatgeek_client_id"]}",
+      url: "https://api.seatgeek.com/2/events?lat=#{params[:lat]}&lon=#{params[:lon]}&q=#{params[:q]}&datetime_utc.gt=#{params[:datetime_utc]}&client_id=#{ENV["seatgeek_client_id"]}",
       headers: {}
     )
     data = JSON.parse(response)
