@@ -9,7 +9,7 @@ class Api::V1::RestaurantsController < ApplicationController
     def search
       response = RestClient::Request.execute(
         method: :get,
-        url: "https://api.yelp.com/v3/businesses/search?term=#{params[:term]}&location=#{params[:location]}",
+        url: "https://api.yelp.com/v3/businesses/search?term=#{params[:term]}&latitude=#{params[:lat]}&longitude=#{params[:lon]}",
         headers: { Authorization: "Bearer #{ENV["yelp_api_key"]}" }
       )
       data = JSON.parse(response)
