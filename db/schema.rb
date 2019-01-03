@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_09_033401) do
+ActiveRecord::Schema.define(version: 2018_09_09_030110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "json_data"
+    t.text "json_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2018_09_09_033401) do
   end
 
   create_table "restaurants", force: :cascade do |t|
-    t.string "json_data"
+    t.text "json_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
