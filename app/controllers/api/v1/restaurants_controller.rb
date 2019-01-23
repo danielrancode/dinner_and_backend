@@ -1,5 +1,5 @@
 class Api::V1::RestaurantsController < ApplicationController
-  skip_before_action :authorized, only: [:search]
+  skip_before_action :authorized, only: [:search, :autocomplete]
 
   DEFAULT_BUSINESS_ID = "yelp-san-francisco"
   DEFAULT_TERM = "dinner"
@@ -10,6 +10,16 @@ class Api::V1::RestaurantsController < ApplicationController
       response = RestClient::Request.execute(
         method: :get,
         url: "https://api.yelp.com/v3/businesses/search?term=#{params[:term]}&latitude=#{params[:lat]}&longitude=#{params[:lon]}",
+        headers: { Authorization: "Bearer #{ENV["yelp_api_key"]}" }
+      )
+      data = JSON.parse(response)
+      render json: data
+    end
+
+    def autocomplete
+      response = RestClient::Request.execute(
+        method: :get,
+        url: "https://api.yelp.com/v3/autocomplete?text=#{params[:text]}&latitude=#{params[:lat]}&longitude=#{params[:lon]}",
         headers: { Authorization: "Bearer #{ENV["yelp_api_key"]}" }
       )
       data = JSON.parse(response)
